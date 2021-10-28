@@ -24,5 +24,6 @@ struct credit_Hours
 
 };
 void file_Open(ifstream& fin);
-void file_Read(ifstream& fin, student_Type[]);
-void process_Credit_Hours(credit_Hours[]);
+void file_Read(int*, ifstream& fin, student_Type[], credit_Hours[]);
+void read_Credit_Hours(int*, credit_Hours[]);
+int grade_clac(int*, credit_Hours[], student_Type[]);
