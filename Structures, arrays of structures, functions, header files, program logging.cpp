@@ -4,8 +4,10 @@
 int main()
 {
   ifstream fin;
-  
+  student_Type student_Info[MAX_NUM_STUDENTS];
+
   file_Open(fin);
+  file_Read(fin,student_Info);
 }
 int file_Open(ifstream& fin)
 {
@@ -24,10 +26,21 @@ int file_Open(ifstream& fin)
 void file_Read(ifstream& fin, student_Type student_Info[])
 {
   while (fin) {
+
+    int i = 0;
+    fin >> student_Info[i].first_Name 
+        >> student_Info[i].last_Name 
+        >> student_Info[i].id 
+        >> student_Info[i].num_Classes;
+// cout << student_Info[i].first_Name << " " << student_Info[i].last_Name << " " << student_Info[i].id << " " << student_Info[i].num_Classes;
     
-    int i=0;
-    fin >> student_Info[i].first_Name >> student_Info[i].last_Name >>
-      student_Info[i].
+    for (int x = 0; x < student_Info[i].num_Classes; x++) {
+      fin >> student_Info[i].class_Name[x] 
+          >> student_Info[i].grades[x];
+// cout << student_Info[i].class_Name[x] << " "  << student_Info[i].grades[x];
+    }
     i++;
+//cout << '\n';
+      
   }
 }

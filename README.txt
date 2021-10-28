@@ -1,11 +1,13 @@
-Program:  ProgramExample.cpp
-Author:  Pam Smith
-Input File:  myFile.txt
+Program:  Structures, arrays of structures, functions, header files, program logging.cpp
+Author:  Patrick Meagher
+Input File:  students.txt
 
-Execute in Dev-C++:  Open ProgramExample.cpp
-                     Select Compile and Run
-                     When program asks for file name, enter:  myFile.txt
+Execute in Visual Studio 2019 (ISO C++20 Standard (/std:c++20)):  
+                        "Structures, arrays of structures, functions, header files, program logging.cpp"
+
+                                Select local windows debugger
+                                When program asks for file name, enter:  students.txt
                      
-Execute stand alone: ProgramExample 1997     // This is not REQUIRED
+
 
 
