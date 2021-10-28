@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Structures, arrays of structures, functions, header files, program logging.cpp">
+    <ClCompile Include="Structures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
