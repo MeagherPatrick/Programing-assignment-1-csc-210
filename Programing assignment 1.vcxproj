@@ -147,6 +147,7 @@
     <ClInclude Include="Head.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="classHours.txt" />
     <Text Include="logFile.txt" />
     <Text Include="pamoutput.txt" />
     <Text Include="README.txt" />

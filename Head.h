@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int MAX_NUM_CLASSES = 4;
+const int MAX_NUM_CLASSES = 12;
 const int MAX_NUM_STUDENTS = 5;
 
 struct student_Type {
@@ -17,5 +17,12 @@ struct student_Type {
   char grades[3];
   double gpa;
 };
+struct credit_Hours
+{
+  string course[MAX_NUM_CLASSES];
+  int credits[MAX_NUM_CLASSES];
+
+};
 int file_Open(ifstream& fin);
 void file_Read(ifstream& fin, student_Type[]);
+int process_Credit_Hours(credit_Hours[],credit_Hours[]);

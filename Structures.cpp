@@ -26,7 +26,8 @@ int file_Open(ifstream& fin)
 void file_Read(ifstream& fin, student_Type student_Info[])
 {
   while (fin) {
-
+    credit_Hours course[MAX_NUM_CLASSES];
+    credit_Hours credits[MAX_NUM_CLASSES];
     int i = 0;
     fin >> student_Info[i].first_Name 
         >> student_Info[i].last_Name 

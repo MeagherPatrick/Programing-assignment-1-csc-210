@@ -37,6 +37,9 @@
     <Text Include="students.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="classHours.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="Programming Assignment 1.docx">
