@@ -5,29 +5,30 @@ int main()
 {
   ifstream fin;
   student_Type student_Info[MAX_NUM_STUDENTS];
+  credit_Hours credits[MAX_NUM_CLASSES];
+  
 
   file_Open(fin);
   file_Read(fin,student_Info);
+  process_Credit_Hours(credits);
 }
-int file_Open(ifstream& fin)
+void file_Open(ifstream& fin)
 {
   string infile_Name;
   cout << " Please enter the file name to open : \n";
-  cin >> infile_Name;
-  cout << " '\n' You entered: " << infile_Name << '\n';
+  cin  >> infile_Name;
+  cout << " '\n' You entered: " 
+       << infile_Name << '\n';
 
   fin.open(infile_Name);
-  if (!fin.is_open()) {
+  if (!fin.is_open()) 
     cout << "error could not open file. \n program will now shut down. \n";
-    return -1;
-  } else
-    return 1;
-}
+    exit;
+  }
 void file_Read(ifstream& fin, student_Type student_Info[])
 {
-  while (fin) {
-    credit_Hours course[MAX_NUM_CLASSES];
-    credit_Hours credits[MAX_NUM_CLASSES];
+  while (fin) 
+  {
     int i = 0;
     fin >> student_Info[i].first_Name 
         >> student_Info[i].last_Name 
@@ -35,13 +36,29 @@ void file_Read(ifstream& fin, student_Type student_Info[])
         >> student_Info[i].num_Classes;
 // cout << student_Info[i].first_Name << " " << student_Info[i].last_Name << " " << student_Info[i].id << " " << student_Info[i].num_Classes;
     
-    for (int x = 0; x < student_Info[i].num_Classes; x++) {
+    for (int x = 0; x < student_Info[i].num_Classes; x++)
+    {
       fin >> student_Info[i].class_Name[x] 
           >> student_Info[i].grades[x];
-// cout << student_Info[i].class_Name[x] << " "  << student_Info[i].grades[x];
+
+     /* cout << " this is the credit for " 
+           << student_Info[i].class_Name 
+           << " "
+           << student_Info[i].grades[x];*/
+    // cout << student_Info[i].class_Name[x] << " "  << student_Info[i].grades[x];
     }
     i++;
 //cout << '\n';
       
   }
+}
+void process_Credit_Hours(credit_Hours credits[MAX_NUM_CLASSES])
+{
+  ifstream fin;
+  fin.open("classHours.txt");
+  for (int i = 0; i < MAX_NUM_CLASSES; i++) {
+    fin >> credits[i].course[i] >> credits[i].credits[i];
+
+   /* cout << credits[i].course[i] << " " << credits[i].credits[i] << '\n';*/
+  } // return (int)credits[0].credits;
 }
