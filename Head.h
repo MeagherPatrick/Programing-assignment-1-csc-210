@@ -10,7 +10,6 @@ const int MAX_NUM_STUDENTS = 20;
 
 struct student_Type {
   string first_Name;
-  string middle_Name;
   string last_Name;
   int id;
   int num_Classes;
@@ -24,7 +23,8 @@ struct credit_Hours
   int credits[MAX_NUM_CLASSES];
 
 };
-void file_Open(ifstream& fin);
+void file_Open(ifstream &fin_1, ifstream& fin_2, ofstream& lout);
 void file_Read(int, ifstream& fin, student_Type[], credit_Hours[]);
 void read_Credit_Hours(int, credit_Hours[]);
-int grade_clac(int, credit_Hours[], student_Type[]);
+double grade_clac(int, credit_Hours[], student_Type[]);
+int file_State(ifstream & fin_, string fname);

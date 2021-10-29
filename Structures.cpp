@@ -3,47 +3,57 @@
 
 int main()
 {
-  ifstream fin;
+  ifstream fin_1,fin_2;
+  ofstream lout;
   student_Type student_Info[MAX_NUM_STUDENTS];
   credit_Hours credits[MAX_NUM_CLASSES];
   
   int I = 0;
 
-  file_Open(fin);
-  file_Read(I, fin,student_Info,credits);
+  file_Open(fin_1, fin_2, lout);
+  file_Read(I, fin_1,student_Info,credits);
 }
-void file_Open(ifstream& fin)
+void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& lout)
 {
-  string infile_Name;
-  cout << " Please enter the file name to open : \n";
-  cin  >> infile_Name;
-  cout << " '\n' You entered: " 
-       << infile_Name << '\n';
+  int fState = 0;
+      string fName;
+  while (fState = 0) {
+    while (fState = 0) {
 
-  fin.open(infile_Name);
-  if (!fin.is_open()) 
-    cout << "error could not open file. \n program will now shut down. \n";
-    exit;
+      cout << "Please enter a student file to open : \n";
+      cin >> fName;
+      fin_1.open(fName);
+      fState = file_State(fin_1,fName);
+    }
+
+    cout << "Please enter a file with class and number of cedits to open : \n";
+    cin >> fName;
+    fin_2.open(fName);
   }
-void file_Read(int I, ifstream& fin, student_Type student_Info[], credit_Hours credits[MAX_NUM_CLASSES])
+}
+
+void file_Read(int I, ifstream& fin_1, student_Type student_Info[], credit_Hours credits[MAX_NUM_CLASSES])
 {
   int test_grade;
   read_Credit_Hours(I, credits);
-  while (fin) 
+  while (fin_1) 
   {
     int i = 0;
-    fin >> student_Info[i].first_Name 
+    fin_1 >> student_Info[i].first_Name 
         >> student_Info[i].last_Name 
         >> student_Info[i].id 
         >> student_Info[i].num_Classes;
     
     for (int x = 0; x < student_Info[i].num_Classes; x++)
     {
-      fin >> student_Info[i].class_Name[x] 
+      fin_1 >> student_Info[i].class_Name[x] 
           >> student_Info[i].grades[x];
       //cout << student_Info[i].grades[x] << '\n';
     }
-      int g = grade_clac(i, credits, student_Info);  
+      student_Info[i].gpa = grade_clac(i, credits, student_Info);  
+  cout << student_Info[i].first_Name 
+      << showpoint 
+      << student_Info[i].gpa << '\n';
    
     i++;
     
@@ -51,22 +61,25 @@ void file_Read(int I, ifstream& fin, student_Type student_Info[], credit_Hours c
 }
 void read_Credit_Hours(int I, credit_Hours credits[MAX_NUM_CLASSES])
 {
-  ifstream fin2;
-  fin2.open("classHours.txt");
+  ifstream fin_12;
+  fin_12.open("classHours.txt");
   for (int i = 0; i < MAX_NUM_CLASSES; i++) {
-    fin2 >> credits[i].course[i] >> credits[i].credits[i];
+    fin_12 >> credits[i].course[i] >> credits[i].credits[i];
   } 
 }
 
-int grade_clac(int I, credit_Hours credit[MAX_NUM_CLASSES], student_Type student[MAX_NUM_STUDENTS])
+double grade_clac(int I, credit_Hours credit[MAX_NUM_CLASSES], student_Type student[MAX_NUM_STUDENTS])
 {
-  int total_credits=0;
+  int total_credits = 0;
+  int possible_Credits = 0;
   double gpa = 0;
   for (int i=0; i < student[I].num_Classes; i++) 
   {      
          
     for (int x = 0; x < MAX_NUM_CLASSES; x++) {
       if (student[I].class_Name[i] == credit[x].course[x]) {
+        possible_Credits += credit[x].credits[x];
+    
 
         switch (student[I].grades[i]) {
           case 'A':
@@ -85,23 +98,25 @@ int grade_clac(int I, credit_Hours credit[MAX_NUM_CLASSES], student_Type student
             total_credits += 0;
             break;
         }
-        gpa = (double)total_credits / student[I].num_Classes;
+        gpa = (double)total_credits /possible_Credits;
         
       }
       
     }
     }
-  cout << student[I].first_Name   
-       << " ";
-  cout << "gpa " << total_credits 
-       << " / "
-       << student[I].num_Classes  
-       << " = " << showpoint << gpa << '\n';
   return gpa;
+}
+int file_State(ifstream & fin_, string fname)
+{
+  if (!fin_.is_open()) {
+    cout << "The last input file you entered did not open" << '\n';
+    return 0;
+  } 
+  return 1;
+
 }
     /*       
     
-
     //I = &i;
 // cout << student_Info[i].first_Name << " " << student_Info[i].last_Name << " " << student_Info[i].id << " " << student_Info[i].num_Classes;
        // cout << I << '\n';
@@ -114,6 +129,5 @@ int grade_clac(int I, credit_Hours credit[MAX_NUM_CLASSES], student_Type student
        // cout << "this is credit[x].course[x]:  " << credit[x].course[x];
      // cout << "this is i.. " << i << '\n';
    // cout << "HERE" << credits[i].course[i] << '\n';
-      
-      
+            
       */
