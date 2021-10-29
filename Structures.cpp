@@ -4,33 +4,53 @@
 int main()
 {
   ifstream fin_1,fin_2;
-  ofstream lout;
+  ofstream fout,lout;
   student_Type student_Info[MAX_NUM_STUDENTS];
   credit_Hours credits[MAX_NUM_CLASSES];
   
   int I = 0;
 
-  file_Open(fin_1, fin_2, lout);
+  file_Open(fin_1, fin_2,fout , lout);
   file_Read(I, fin_1,student_Info,credits);
 }
-void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& lout)
+void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& fout, ofstream& lout)
 {
-  int fState = 0;
+  auto fState = 0;
       string fName;
-  while (fState = 0) {
-    while (fState = 0) {
-
-      cout << "Please enter a student file to open : \n";
+  
+    while (fState = 0) 
+    {
+      cout << "Please enter a student file to open: \n";
       cin >> fName;
       fin_1.open(fName);
       fState = file_State(fin_1,fName);
     }
-
-    cout << "Please enter a file with class and number of cedits to open : \n";
-    cin >> fName;
-    fin_2.open(fName);
-  }
+    fState = 0;
+    while (fState = 0) 
+    {
+      cout
+        << "Please enter a file with class and number of cedits to open: \n";
+      cin >> fName;
+      fin_2.open(fName);
+      fState = file_State(fin_2, fName);
+    }
+    fState = 0;
+    while (fState = 0) {
+      cout
+        << "Please enter a name for your output file: \n";
+      cin >> fName;
+      fout.open(fName);
+      fState = outFile_State(fout, fName);
+    }
+    fState = 0;
+    while (fState = 0) {
+      cout << "Program logs files will be stored in logFile.txt";
+      
+      lout.open("logFile.txt");
+      fState = file_State(fin_2, fName);
+    }
 }
+
 
 void file_Read(int I, ifstream& fin_1, student_Type student_Info[], credit_Hours credits[MAX_NUM_CLASSES])
 {
@@ -106,14 +126,22 @@ double grade_clac(int I, credit_Hours credit[MAX_NUM_CLASSES], student_Type stud
     }
   return gpa;
 }
-int file_State(ifstream & fin_, string fname)
+bool file_State(ifstream & fin_, string fname)
 {
   if (!fin_.is_open()) {
-    cout << "The last input file you entered did not open" << '\n';
+    cout << fname << "  did not open." << '\n';
     return 0;
   } 
   return 1;
 
+}
+bool outFile_State(ofstream& out_, string fname)
+{
+  if (!out_.is_open()) {
+    cout << fname << "  did not open." << '\n';
+    return 0;
+  }
+  return 1;  
 }
     /*       
     
