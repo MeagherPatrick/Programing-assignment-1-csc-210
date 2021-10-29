@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ struct student_Type {
   int id;
   int num_Classes;
   string class_Name[MAX_NUM_CLASSES];
-  int grades[12];
+  char grades[12];
   double gpa;
 };
 struct credit_Hours
@@ -24,6 +25,6 @@ struct credit_Hours
 
 };
 void file_Open(ifstream& fin);
-void file_Read(int*, ifstream& fin, student_Type[], credit_Hours[]);
-void read_Credit_Hours(int*, credit_Hours[]);
-int grade_clac(int*, credit_Hours[], student_Type[]);
+void file_Read(int, ifstream& fin, student_Type[], credit_Hours[]);
+void read_Credit_Hours(int, credit_Hours[]);
+int grade_clac(int, credit_Hours[], student_Type[]);
