@@ -34,10 +34,10 @@
     <Text Include="logFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="students.txt">
+    <Text Include="st.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="classHours.txt">
+    <Text Include="credit.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

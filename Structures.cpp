@@ -55,26 +55,36 @@ void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& fout, ofstream& lout)
 void file_Read(int I, ifstream& fin_1, ifstream& fin_2, ofstream& fout, ofstream& lout,
     student_Type student_Info[], credit_Hours credits[])
 {
-  string s;
-  int test_grade;
-  read_Credit_Hours(I, credits,fin_2 );
-  ///*int i = 0;
-  //
-  //I = i;
-  //fin_1 >> student_Info[i].first_Name >> student_Info[i].last_Name >>
-  //  student_Info[i].id >> student_Info[i].num_Classes;
-
-  //for (int x=0; x < student_Info[i].num_Classes; x++) {
-  //  fin_1 >> student_Info[i].class_Name[x] >> student_Info[i].grades[x];
-  //}*/
-  //grade_clac(I, credits, student_Info);
-  //output(I, fout, lout, student_Info);
   int i = 0;
-   cout << '\n' << s;
-  while (getline(fin_1,s)) 
-  {
+     I = i;
+ read_Credit_Hours(I, credits,fin_2 );
+ string s;
+ fin_1 >> student_Info[i].first_Name >> student_Info[i].last_Name >>
+   student_Info[i].id >> student_Info[i].num_Classes;
+
+ for (int x = 0; x < student_Info[i].num_Classes; x++) {
+   fin_1 >> student_Info[i].class_Name[x] >> student_Info[i].grades[x];
+ }
+
+ do {
+ grade_clac(I, credits, student_Info);
+ output(I, fout, lout, student_Info);
+   i++;
+ I = i;
+ cout << "this is i in the do: " << i << '\n';
+
+    fin_1 >> student_Info[i].first_Name >> student_Info[i].last_Name >>
+      student_Info[i].id >> student_Info[i].num_Classes;
+
+    for (int x = 0; x < student_Info[i].num_Classes; x++) {
+      fin_1 >> student_Info[i].class_Name[x] >> student_Info[i].grades[x];
+    }
+   // grade_clac(I, credits, student_Info);
+ // output(I, fout, lout, student_Info);
+ } while (fin_1);
+  /*{
+    i++; 
    I = i;
-    cout << '\n' << i << '\n';
     fin_1 >> student_Info[i].first_Name 
         >> student_Info[i].last_Name 
         >> student_Info[i].id 
@@ -87,12 +97,11 @@ void file_Read(int I, ifstream& fin_1, ifstream& fin_2, ofstream& fout, ofstream
     }
     
     grade_clac(I, credits, student_Info);
-    output(I, fout, lout,student_Info);
-    i++;
+    output(I, fout, lout,student_Info);*/
     /*cout << '\n';
     cout << student_Info[I].first_Name << ", " << student_Info[I].last_Name << ", "
         << student_Info[I].id << ", " << showpoint << student_Info[I].gpa << '\n';*/
-  }
+//  }
 }
 void read_Credit_Hours(int I, credit_Hours credits[MAX_NUM_CLASSES], ifstream & fin_2)
 {
@@ -172,6 +181,7 @@ void gpa_calc(int I, int total_Credits, int possible_Credits, student_Type stude
 }
 void output(int I, ofstream& fout, ofstream& lout, student_Type student[MAX_NUM_STUDENTS])
 {
+    cout << '\n' << I << '\n';
   cout << student[I].first_Name << ", " << student[I].last_Name << ", "
        << student[I].id << ", " << showpoint << student[I].gpa << '\n';
 }
