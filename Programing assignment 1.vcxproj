@@ -147,11 +147,11 @@
     <ClInclude Include="Head.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="classHours.txt" />
+    <Text Include="credit.txt" />
     <Text Include="logFile.txt" />
     <Text Include="pamoutput.txt" />
     <Text Include="README.txt" />
-    <Text Include="students.txt" />
+    <Text Include="st.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Programming Assignment 1.docx" />
