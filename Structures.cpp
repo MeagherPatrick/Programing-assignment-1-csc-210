@@ -11,14 +11,16 @@ int main()
   int I = 0;
 
   file_Open(fin_1, fin_2,fout , lout);
-  file_Read(I, fin_1,student_Info,credits);
+  file_Read(I, fin_1, fin_2, fout, lout, student_Info, credits);
+  file_Close(fin_1, fin_2, fout, lout);
+  return 0;
 }
 void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& fout, ofstream& lout)
 {
-  auto fState = 0;
-      string fName;
+  bool fState = 0;
+  string fName;
   
-    while (fState = 0) 
+    while (fState == 0) 
     {
       cout << "Please enter a student file to open: \n";
       cin >> fName;
@@ -26,7 +28,7 @@ void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& fout, ofstream& lout)
       fState = file_State(fin_1,fName);
     }
     fState = 0;
-    while (fState = 0) 
+    while (fState == 0) 
     {
       cout
         << "Please enter a file with class and number of cedits to open: \n";
@@ -35,7 +37,7 @@ void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& fout, ofstream& lout)
       fState = file_State(fin_2, fName);
     }
     fState = 0;
-    while (fState = 0) {
+    while (fState == 0) {
       cout
         << "Please enter a name for your output file: \n";
       cin >> fName;
@@ -43,93 +45,99 @@ void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& fout, ofstream& lout)
       fState = outFile_State(fout, fName);
     }
     fState = 0;
-    while (fState = 0) {
-      cout << "Program logs files will be stored in logFile.txt";
+    while (fState == 0) {
+      cout << "Program logs files will be stored in logFile.txt \n";
       
       lout.open("logFile.txt");
       fState = file_State(fin_2, fName);
     }
 }
-
-
-void file_Read(int I, ifstream& fin_1, student_Type student_Info[], credit_Hours credits[MAX_NUM_CLASSES])
+void file_Read(int I, ifstream& fin_1, ifstream& fin_2, ofstream& fout, ofstream& lout,
+    student_Type student_Info[], credit_Hours credits[])
 {
+  string s;
   int test_grade;
-  read_Credit_Hours(I, credits);
-  while (fin_1) 
+  read_Credit_Hours(I, credits,fin_2 );
+  ///*int i = 0;
+  //
+  //I = i;
+  //fin_1 >> student_Info[i].first_Name >> student_Info[i].last_Name >>
+  //  student_Info[i].id >> student_Info[i].num_Classes;
+
+  //for (int x=0; x < student_Info[i].num_Classes; x++) {
+  //  fin_1 >> student_Info[i].class_Name[x] >> student_Info[i].grades[x];
+  //}*/
+  //grade_clac(I, credits, student_Info);
+  //output(I, fout, lout, student_Info);
+  int i = 0;
+   cout << '\n' << s;
+  while (getline(fin_1,s)) 
   {
-    int i = 0;
+   I = i;
+    cout << '\n' << i << '\n';
     fin_1 >> student_Info[i].first_Name 
         >> student_Info[i].last_Name 
         >> student_Info[i].id 
         >> student_Info[i].num_Classes;
     
-    for (int x = 0; x < student_Info[i].num_Classes; x++)
+    for ( int x=0; x < student_Info[i].num_Classes; x++)
     {
       fin_1 >> student_Info[i].class_Name[x] 
           >> student_Info[i].grades[x];
-      //cout << student_Info[i].grades[x] << '\n';
     }
-      student_Info[i].gpa = grade_clac(i, credits, student_Info);  
-  cout << student_Info[i].first_Name 
-      << showpoint 
-      << student_Info[i].gpa << '\n';
-   
-    i++;
     
+    grade_clac(I, credits, student_Info);
+    output(I, fout, lout,student_Info);
+    i++;
+    /*cout << '\n';
+    cout << student_Info[I].first_Name << ", " << student_Info[I].last_Name << ", "
+        << student_Info[I].id << ", " << showpoint << student_Info[I].gpa << '\n';*/
   }
 }
-void read_Credit_Hours(int I, credit_Hours credits[MAX_NUM_CLASSES])
+void read_Credit_Hours(int I, credit_Hours credits[MAX_NUM_CLASSES], ifstream & fin_2)
 {
-  ifstream fin_12;
-  fin_12.open("classHours.txt");
-  for (int i = 0; i < MAX_NUM_CLASSES; i++) {
-    fin_12 >> credits[i].course[i] >> credits[i].credits[i];
-  } 
+   for (int i = 0; i < MAX_NUM_CLASSES; i++)
+        fin_2 >> credits[i].course[i] >> credits[i].credits[i];
 }
-
-double grade_clac(int I, credit_Hours credit[MAX_NUM_CLASSES], student_Type student[MAX_NUM_STUDENTS])
+void grade_clac(int I, credit_Hours credit[MAX_NUM_CLASSES], student_Type student[MAX_NUM_STUDENTS])
 {
-  int total_credits = 0;
+  int total_Credits = 0;
   int possible_Credits = 0;
   double gpa = 0;
   for (int i=0; i < student[I].num_Classes; i++) 
   {      
-         
     for (int x = 0; x < MAX_NUM_CLASSES; x++) {
       if (student[I].class_Name[i] == credit[x].course[x]) {
         possible_Credits += credit[x].credits[x];
-    
 
         switch (student[I].grades[i]) {
           case 'A':
-            total_credits += 4 * credit[x].credits[x];
+            total_Credits += 4 * credit[x].credits[x];
             break;
           case 'B':
-            total_credits += 3 * credit[x].credits[x];
+            total_Credits += 3 * credit[x].credits[x];
             break;
           case 'C':
-            total_credits += 2 * credit[x].credits[x];
+            total_Credits += 2 * credit[x].credits[x];
             break;
           case 'D':
-            total_credits += 1 * credit[x].credits[x];
+            total_Credits += 1 * credit[x].credits[x];
             break;
           case 'F':
-            total_credits += 0;
+            total_Credits += 0;
             break;
         }
-        gpa = (double)total_credits /possible_Credits;
+        gpa_calc(I, total_Credits, possible_Credits, student);
         
       }
-      
     }
-    }
-  return gpa;
+  }
+  
 }
 bool file_State(ifstream & fin_, string fname)
 {
   if (!fin_.is_open()) {
-    cout << fname << "  did not open." << '\n';
+    cout << fname << "  is not open." << '\n';
     return 0;
   } 
   return 1;
@@ -138,15 +146,40 @@ bool file_State(ifstream & fin_, string fname)
 bool outFile_State(ofstream& out_, string fname)
 {
   if (!out_.is_open()) {
-    cout << fname << "  did not open." << '\n';
+    cout << fname << "  is not open." << '\n';
     return 0;
   }
   return 1;  
 }
+void file_Close(ifstream& fin_1, ifstream& fin_2, ofstream& fout,
+                ofstream& lout)
+{
+  string placeHolder = "oh no";
+  bool fState;
+  fin_1.close();
+  fin_2.close();
+  fout.close();
+  lout.close();
+  //fState = file_State(fin_1, placeHolder);
+  //if (fState == 1)
+  //  cout << "A file did not close \n";
+
+}
+void gpa_calc(int I, int total_Credits, int possible_Credits, student_Type student[MAX_NUM_STUDENTS])
+{
+  student[I].gpa = (double)total_Credits / possible_Credits;
+
+}
+void output(int I, ofstream& fout, ofstream& lout, student_Type student[MAX_NUM_STUDENTS])
+{
+  cout << student[I].first_Name << ", " << student[I].last_Name << ", "
+       << student[I].id << ", " << showpoint << student[I].gpa << '\n';
+}
+ // cout << "this is I: " << I << '\n';
     /*       
     
     //I = &i;
-// cout << student_Info[i].first_Name << " " << student_Info[i].last_Name << " " << student_Info[i].id << " " << student_Info[i].num_Classes;
+
        // cout << I << '\n';
 
     //cout << credits[i].course[i] << " " << credits[i].credits[i] << '\n';

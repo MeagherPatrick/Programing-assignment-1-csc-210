@@ -24,8 +24,11 @@ struct credit_Hours
 
 };
 void file_Open(ifstream &fin_1, ifstream& fin_2, ofstream& fout, ofstream& lout);
-void file_Read(int, ifstream& fin, student_Type[], credit_Hours[]);
-void read_Credit_Hours(int, credit_Hours[]);
-double grade_clac(int, credit_Hours[], student_Type[]);
+void file_Read(int, ifstream& fin_1, ifstream& fin_2, ofstream& fout, ofstream& lout, student_Type[], credit_Hours[]);
+void read_Credit_Hours(int, credit_Hours[], ifstream & fin_2);
+void grade_clac(int I, credit_Hours credit[], student_Type student[]);
 bool file_State(ifstream & fin_, string fname);
 bool outFile_State(ofstream& out_, string fname);
+void file_Close(ifstream& fin_1, ifstream& fin_2, ofstream& fout,ofstream& lout);
+void gpa_calc(int I, int total_Credits, int possible_Credits, student_Type student[]);
+void output(int, ofstream& fout, ofstream& lout, student_Type student[]);
