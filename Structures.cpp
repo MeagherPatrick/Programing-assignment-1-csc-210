@@ -9,10 +9,8 @@ int main()
   credit_Hours credits[MAX_NUM_CLASSES];
   int I = 0;
 
-  file_Open(fin_1, fin_2,fout , lout);
-  lout << "Exited function file_Open reutrning to main " << '\n';
+  file_Open(fin_1, fin_2,fout , lout);  
   file_Read(I, fin_1, fin_2, fout, lout, student_Info, credits);
-  lout << "Exited function file_Read reutrning to main " << '\n';
   file_Close(fin_1, fin_2, fout, lout);
   return 0;
 }
@@ -64,7 +62,7 @@ void file_Open(ifstream& fin_1,ifstream& fin_2, ofstream& fout, ofstream& lout)
         << '\n';
     }
     lout << "Exiting function file_Open" << '\n';
-}
+    }
 void file_Read(int I, ifstream& fin_1, ifstream& fin_2, ofstream& fout, ofstream& lout, student_Type student_Info[], credit_Hours credits[])
 {
   string class_taken[MAX_NUM_CLASSES];
@@ -100,6 +98,7 @@ void file_Read(int I, ifstream& fin_1, ifstream& fin_2, ofstream& fout, ofstream
       fin_1 >> class_taken[x] >> class_grade[x];
     }
  } while (fin_1);
+ lout << "Exited function file_Read" << '\n';
 }
 void read_Credit_Hours(int I, credit_Hours credits[MAX_NUM_CLASSES], ifstream & fin_2, ofstream& lout)
 {
