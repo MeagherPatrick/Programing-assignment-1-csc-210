@@ -141,20 +141,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Structures.cpp" />
+    <Text Include="classHours.txt" />
+    <Text Include="logFile.txt" />
+    <Text Include="pamoutput.txt" />
+    <Text Include="README.txt" />
+    <Text Include="students.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Programming Assignment 1.docx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Head.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="credit.txt" />
-    <Text Include="logFile.txt" />
-    <Text Include="pamoutput.txt" />
-    <Text Include="README.txt" />
-    <Text Include="st.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Programming Assignment 1.docx" />
+    <ClCompile Include="Structures.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -97,7 +97,8 @@ void file_Read(int I, ifstream& fin_1, ifstream& fin_2, ofstream& fout, ofstream
     for (int x = 0; x < student_Info[i].num_Classes; x++) {
       fin_1 >> class_taken[x] >> class_grade[x];
     }
- } while (fin_1);
+    
+ } while (getline(fin_1, s));
  lout << "Exited function file_Read" << '\n';
 }
 void read_Credit_Hours(int I, credit_Hours credits[MAX_NUM_CLASSES], ifstream & fin_2, ofstream& lout)

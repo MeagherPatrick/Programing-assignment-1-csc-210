@@ -15,16 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Structures.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Head.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="README.txt">
       <Filter>Resource Files</Filter>
     </Text>
@@ -34,10 +24,10 @@
     <Text Include="logFile.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="st.txt">
+    <Text Include="classHours.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="credit.txt">
+    <Text Include="students.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
@@ -45,5 +35,15 @@
     <None Include="Programming Assignment 1.docx">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Structures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Head.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
